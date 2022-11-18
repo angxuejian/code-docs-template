@@ -1,0 +1,29 @@
+@import url('./light.scss');
+@import url('./dark.scss');
+@import '../common/index.scss';
+@import '../common/screen.scss';
+
+:root { 
+  --primary-color: #438EDB; /* 主颜色 */
+  --success-color: #67C23A; /* 成功 */
+  --warning-color: #E6A23C; /* 警告 */
+  --error-color: #F56C6C;   /* 错误 */
+
+  --primary-color-bg: rgba(64, 158, 255, 0.1);
+  --success-color-bg: rgba(103, 194, 58, 0.1);
+  --warning-color-bg: rgba(230, 162, 60, 0.1);
+  --error-color-bg: rgba(245, 108, 108, 0.1);
+
+  --nav-z-index: 10;
+  --men-z-index: 11;
+  --sid-mask-z-index: 15;
+  --sid-z-index: 16;
+  --mask-z-index: 9999999;
+
+  --fs-logo: 12px;
+
+  --navbar-height: 55PX;
+  --navbar-margin: 55PX;
+
+  --sidebar-width: 27%;
+}
