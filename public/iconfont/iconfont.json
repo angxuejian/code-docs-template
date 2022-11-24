@@ -1,0 +1,44 @@
+{
+  "id": "3771496",
+  "name": "code docs template",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "5994012",
+      "name": "sun",
+      "font_class": "sun",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "5994097",
+      "name": "moon",
+      "font_class": "moon",
+      "unicode": "e640",
+      "unicode_decimal": 58944
+    },
+    {
+      "icon_id": "6598339",
+      "name": "caret-down",
+      "font_class": "caret-down",
+      "unicode": "e8ec",
+      "unicode_decimal": 59628
+    },
+    {
+      "icon_id": "6598341",
+      "name": "caret-up",
+      "font_class": "caret-up",
+      "unicode": "e8ed",
+      "unicode_decimal": 59629
+    },
+    {
+      "icon_id": "1624981",
+      "name": "icon_menu_open",
+      "font_class": "icon_menu_open",
+      "unicode": "e69e",
+      "unicode_decimal": 59038
+    }
+  ]
+}

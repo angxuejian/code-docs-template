@@ -1,0 +1,26 @@
+
+@media only screen and (max-width: 950px) {
+  .navbar-wrapper {
+    max-width: 100% !important;
+  }
+  .main-wrapper {
+    margin-left: 0 !important;
+    margin: 0 auto !important;
+  }
+  .sidebar {
+    transform: translateX(-100%) !important;
+    top: 0 !important;
+    height: 100% !important;
+  }
+  .menubar {
+    display: flex !important;
+  }
+  .view {
+    padding-left: 0 !important;
+    justify-content: center !important;
+    .view-wrapper {
+      width: 90% !important;
+    }
+  }
+
+}
