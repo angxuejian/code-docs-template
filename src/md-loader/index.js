@@ -61,8 +61,8 @@ module.exports = function(source) {
     </template>
 
     <script>
-      import demoBlock from '@/demo/src/index'
-      import highlight from '@/demo/src/common/highlight.js'
+      import demoBlock from '@/md-loader/src/index'
+      import highlight from '@/md-loader/src/common/highlight.js'
       import { defineAsyncComponent, 
         toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, 
         vModelText as _vModelText, withDirectives as _withDirectives, 
