@@ -29,7 +29,7 @@ module.exports = {
           test: setting.regMLoader,
           use: [
             { loader: 'vue-loader', options: { compilerOptions: { preserveWhitespace: false } } },
-            { loader: path.resolve(__dirname, './src/md-loader/index.js') },
+            { loader: '@angxuejian/md-loader' },
           ],
         },
       ],

@@ -61,15 +61,16 @@ module.exports = function(source) {
     </template>
 
     <script>
-      import demoBlock from '@/md-loader/src/index'
-      import highlight from '@/md-loader/src/common/highlight.js'
+      import demoBlock from '@angxuejian/md-loader/src/index'
+      import highlight from '@angxuejian/md-loader/src/common/highlight.js'
       import { defineAsyncComponent, 
         toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, 
         vModelText as _vModelText, withDirectives as _withDirectives, 
         Fragment as _Fragment, openBlock as _openBlock, 
         createElementBlock as _createElementBlock,
         createTextVNode as _createTextVNode,
-        pushScopeId as _pushScopeId, popScopeId as _popScopeId
+        pushScopeId as _pushScopeId, popScopeId as _popScopeId,
+        normalizeClass as _normalizeClass
         } from 'vue'
 
       export default {

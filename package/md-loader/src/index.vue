@@ -70,7 +70,7 @@ export default {
   },
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .demo-block {
   border: solid 1PX var(--mo-demo-border);
   border-radius: 3PX;
