@@ -1,6 +1,12 @@
 [
   {
     "title": "Markdown 扩展",
-    "url": "readme"
+    "name": "readme"
+  },
+  {
+    "title": "百度",
+    "path": "https://www.baidu.com",
+    "link": true
   }
 ]
+

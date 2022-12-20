@@ -21,7 +21,7 @@ const importComponent = vname => `defineAsyncComponent(() => import('@/views/exa
 // https://github.com/vuejs/repl/blob/main/src/transform.ts js与样式转换
 const renderComponent = (source, id) => {
   const { descriptor } = parse(source)
-  const scoped = true // 默认为独立样式，单个标签scopedId会添加失败，vue3.0.0版本bug
+  const scoped = false // 默认为独立样式，单个标签scopedId会添加失败，vue3.0.0版本bug
 
   descriptor.id = `${id}`
   descriptor.filename = 'inline-component'
@@ -91,8 +91,8 @@ function getRenderCode(code, descriptor) {
   const targetLength = target.length
   const index = code.indexOf(target)
   let render = code.slice(index + targetLength).replace(/export/g, '')
-  // return render
-  return rewriteRenderCode(render, descriptor)
+  return render
+  // return rewriteRenderCode(render, descriptor)
 }
 
 /**
@@ -103,27 +103,56 @@ function getRenderCode(code, descriptor) {
  */
 function rewriteRenderCode(code, descriptor) {
   let render = code
+  let withScopeId = ''
 
   const scoped = /_withScopeId/
   const hoisted = render.match(/const _hoisted_1 = (.*)[\*\)\)|\}]/)
+  const event = render.match(/onClick|onChange/) || []
+
+  if (!scoped.test(render)) {
+    withScopeId = `const _withScopeId = n => (_pushScopeId("data-v-${descriptor.id}"),n=n(),_popScopeId(),n)\n`
+  }
 
   // 重写 _hoisted_1不存在_withScopeId方法 和 全部不存在_withScopeId方法
   if ((hoisted && !scoped.test(hoisted[0])) || !scoped.test(render)) {
-    const tag = descriptor.customBlocks[0] || descriptor.template
+    const tag = descriptor.customBlocks[0].type
+
     const renderStr = /_openBlock\(\),([\S\s]+)\)/
-    const parReg = new RegExp(`_createElementBlock\\("${tag.type}", ([\\S\\s]+), ([\\S\\s]+)\\)\\)`) // 需要多一层 \ 转义
+    const parReg = new RegExp(`_createElementBlock\\("${tag}", ([\\S\\s]+), ([\\S\\s]+)\\)\\)`) // 需要多一层 \ 转义
     const params = render.match(parReg)
-    let withScopeId = ''
     
-    if (!scoped.test(render)) {
-      withScopeId = `const _withScopeId = n => (_pushScopeId("data-v-${descriptor.id}"),n=n(),_popScopeId(),n)\n`
-    }
     const _hoisted_start = `_openBlock(), _createElementBlock(_Fragment, null, [
       _withScopeId(() => _createElementVNode("${tag.type}", ${params[1]}, ${params[2]})) 
     ]))`
-    render = withScopeId + render.replace(renderStr, _hoisted_start)
+    render = render.replace(renderStr, _hoisted_start)
+  } 
+  
+  // 重写有event事件的标签
+  else if (event.length) {
+    const indexRender = render.indexOf('function render')
+    let startRender = render.substring(0, indexRender)
+    let endRender = render.substring(indexRender)
+    let str = ''
+
+    for (let i = 0; i < event.length; i++) {
+
+      let startIndex = endRender.indexOf('_createElementVNode')
+      let endIndex = 0
+      let endValueIndex = endRender.indexOf('")')
+      let endNullIndex = endRender.indexOf('})')
+      endIndex = (endValueIndex === -1 ? endNullIndex : endValueIndex) + 2
+
+      const content = endRender.substring(0, endIndex)
+      const target = content.substring(startIndex)
+      const value =  `_withScopeId(() => ${target})`
+      str += content.replace(target, value)
+      endRender = endRender.substring(endIndex)
+
+      if (i === event.length - 1) str = startRender + str + endRender
+    }
+    render = str
   }
-  return render
+  return withScopeId + render
 }
 
 function getScriptCode(code) {
