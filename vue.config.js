@@ -30,6 +30,7 @@ module.exports = {
           use: [
             { loader: 'vue-loader', options: { compilerOptions: { preserveWhitespace: false } } },
             { loader: '@angxuejian/md-loader' },
+            // { loader: path.resolve(__dirname, './package/md-loader')}
           ],
         },
       ],

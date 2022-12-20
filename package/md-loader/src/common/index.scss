@@ -120,12 +120,19 @@
     width: 100%;
     margin: 0;
     padding: 18PX 20PX;
-    padding-top: 0PX;
     box-sizing: border-box;
     border-radius: 3PX;
-    font-size: 13PX;
+    font-size: 12PX;
     line-height: 1.5;
     font-family: Menlo, Monaco, Consolas, Courier, monospace;
+    border: 1px solid var(--mo-demo-border);
+  }
+
+  .demo-block {
+    .hljs {
+      padding-top: 0;
+      border: none;
+    }
   }
 }
 

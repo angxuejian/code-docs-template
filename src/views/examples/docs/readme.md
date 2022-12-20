@@ -43,6 +43,13 @@
 使用**html**代码块```加载<script>与<style>标签时```，编译代码会提出警告```Tags with side effect (<script> and <style>) are ignored in client component templates``` ，而使用 **component**代码块，将没有任何问题
 :::
 
+``` shell
+npm install @angxuejian/md-loader --save-dev
+```
+``` html
+<link href='https://www.baidu.com' />
+```
+123
 ## 表格
 name | age
 ---  | ---  

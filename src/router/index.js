@@ -2,22 +2,48 @@ import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router
 import Navbar from './navbar.json'
 const setting = require('@/setting')
 
+
+/**
+ * navbar.json 配置
+ * 
+ * [
+ *  {
+ *    title: string,  // 路由标题
+ *    children: [ // 子路由
+ *      {
+ *        title: string, // 路由标题
+ *        name: string,  // 路由地址名称 或 地址
+ *        path: string,  // 地址
+ *        link: boolean, // 是否跳转外部地址
+ *      }
+ *    ]
+ *  },
+ *  {
+ *    title: string,
+ *    name: string,
+ *    path: string,
+ *    link: boolean
+ *  }
+ * 
+ * ]
+ */
 const formatRouter = () => {
   const router = []
   const setData = (item) => {
+    const url = item.path || item.name 
     return {
-      path: `/${setting.path}/${item.url}`,
-      name: item.url[0].toUpperCase() + item.url.substr(1),
-      component: () => import('@/views/examples/docs/' + item.url + '.md'),
+      path: `/${setting.path}/${url}`,
+      name: item.name[0].toUpperCase() + item.name.substr(1),
+      component: () => import('@/views/examples/docs/' + url + '.md'),
     }
   }
   Navbar.forEach(item => {
     if (item.children) {
       item.children.forEach(child => {
-        router.push(setData(child))
+        !child.link && router.push(setData(child))
       })
     } else {
-      router.push(setData(item))
+      !item.link && router.push(setData(item))
     }
   })
   return router

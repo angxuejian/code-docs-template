@@ -55,6 +55,10 @@ module.exports = function(source) {
   }
 
   templateArray.push(html.slice(index)) // 最后一个:moto-demo--> 之后的数据
+
+  
+  // import demoBlock from '../../../../package/md-loader/src/index'
+  // import highlight from '../../../../package/md-loader/src/common/highlight.js'
   return `
     <template>
       <div v-highlight class='docs-wrapper'> ${templateArray.join('')} </div>

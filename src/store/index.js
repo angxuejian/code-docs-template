@@ -1,5 +1,4 @@
 import { createStore } from 'vuex';
-
 export default createStore({
   state: {
     path: '/',         // 当前页面的 path

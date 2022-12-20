@@ -9,7 +9,7 @@
     <div class="component"><slot name="component"></slot></div>
     
     <div 
-      class="component-source"
+      class="component-source"  
       :style="`height: ${componentSourceHeight}px;`"
     >
       <div v-if="$slots.desc" ref='desc' class="desc"><slot name="desc"></slot></div>
@@ -90,8 +90,6 @@ export default {
     height: 0;
     transition: height .2s;
   }
-
-  
 
   .control {
     border-top: solid 1PX var(--mo-demo-border);
