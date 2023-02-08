@@ -29,18 +29,15 @@
 <script>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useStore } from 'vuex'
-import { useRouter } from 'vue-router'
-import Navbar from '@/router/navbar.json'
+import pages from '@/router/pages.js'
 import routerHref from './router-href.vue'
-const setting = require('@/setting')
 export default {
   components: { routerHref },
   setup() {
-    const pathUrl = item => `/${setting.path}/${(item.path || item.name)}`
+    const pathUrl = item => `/${(item.name)}`
 
-    const router = useRouter()
     const store = useStore()
-    const sidebarArr = ref(Navbar)
+    const sidebarArr = ref(pages)
     const sidebarIndex = computed(() => store.state.path)
     const hasSide = computed(() => store.state.hasSide)
     const close = () => { store.dispatch('CHANGE_SIDE', false) }

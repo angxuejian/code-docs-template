@@ -1,6 +1,6 @@
 {
   "name": "@angxuejian/md-loader",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Vue转Md (Vue3.0.0版本)",
   "main": "index.js",
   "scripts": {

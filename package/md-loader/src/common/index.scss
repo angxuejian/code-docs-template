@@ -89,8 +89,11 @@
     }
   }
   
-  h2, h3 {
+  h2 {
     margin-top: 55PX;
+  }
+  h3 {
+    margin-top: 30PX;
   }
 
   table {
@@ -132,6 +135,18 @@
     .hljs {
       padding-top: 0;
       border: none;
+    }
+  }
+
+  blockquote {
+    margin-left: 0;
+    padding-left: 10PX;
+    color: #b2b2b2;
+    border-left: 4PX solid var(--mo-demo-border);
+    > p {
+      color: var(--mo-text-secondary-color);
+      margin: 0;
+      margin-bottom: 7PX;
     }
   }
 }
